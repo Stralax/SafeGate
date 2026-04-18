@@ -1,4 +1,4 @@
-import { prisma } from "../../../../../src/lib/prisma";
+// import { prisma } from "../../../../../src/lib/prisma";
 import type {
   SwipeAttempt,
   SwipeGameResult,
@@ -61,24 +61,24 @@ export async function scoreAndPersistSwipeGame(
   const score = accuracy * ACCURACY_WEIGHT + latencyNormalized * LATENCY_WEIGHT;
   const passed = score >= PASS_THRESHOLD;
 
-  await prisma.gameResult.create({
-    data: {
-      sessionId,
-      gameType: "SWIPE",
-      passed,
-      // Cast to satisfy Prisma's InputJsonValue — SwipeRoundResult[] is a valid JSON array
-      metrics: JSON.parse(
-        JSON.stringify({
-          totalRounds: metrics.totalRounds,
-          correctCount: metrics.correctCount,
-          accuracy: metrics.accuracy,
-          avgLatencyMs: metrics.avgLatencyMs,
-          latencyNormalized: metrics.latencyNormalized,
-          rounds: metrics.rounds,
-        }),
-      ),
-    },
-  });
+  // await prisma.gameResult.create({
+  //   data: {
+  //     sessionId,
+  //     gameType: "SWIPE",
+  //     passed,
+  //     // Cast to satisfy Prisma's InputJsonValue — SwipeRoundResult[] is a valid JSON array
+  //     metrics: JSON.parse(
+  //       JSON.stringify({
+  //         totalRounds: metrics.totalRounds,
+  //         correctCount: metrics.correctCount,
+  //         accuracy: metrics.accuracy,
+  //         avgLatencyMs: metrics.avgLatencyMs,
+  //         latencyNormalized: metrics.latencyNormalized,
+  //         rounds: metrics.rounds,
+  //       }),
+  //     ),
+  //   },
+  // });
 
   return { score, passed, metrics };
 }
