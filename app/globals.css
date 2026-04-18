@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-safegate-bg text-slate-50 font-sans antialiased;
+    /* Subtle grid to reinforce the automotive / technical aesthetic */
+    background-image:
+      radial-gradient(
+        circle at 20% 10%,
+        rgba(34, 211, 238, 0.05),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 80% 90%,
+        rgba(16, 185, 129, 0.05),
+        transparent 50%
+      );
+  }
+
+  ::selection {
+    @apply bg-safegate-primary/30 text-slate-50;
+  }
+}
